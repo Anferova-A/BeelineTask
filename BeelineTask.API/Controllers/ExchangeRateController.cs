@@ -19,7 +19,11 @@ public class ExchangeRateController : ControllerBase
     /// Получение списка доступных валют
     /// </summary>
     /// <returns>Список доступных валют</returns>
+    /// /// <response code="200">Успешный запрос</response>
+    /// <response code="404">Список валют не найден</response>
     [HttpGet]
+    [ProducesResponseType(typeof(ExchangeRateViewItem), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(NotFoundResult), StatusCodes.Status404NotFound)]
     public async Task<ActionResult<IEnumerable<ExchangeRateViewItem>>> GetAvalableList()
     {
         var data = await GetData();
